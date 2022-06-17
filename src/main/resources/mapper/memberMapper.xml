@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Member">
+
+
+    <insert id="save" parameterType="member">
+        insert into prefer_member(id, memberId, memberPassword, memberName, memberAge, memberPhone)
+        values (#{id}, #{memberId}, #{memberPassword}, #{memberName}, #{memberAge}, #{memberPhone})
+    </insert>
+    <delete id="delete" parameterType="Long">
+        delete
+        from prefer_member
+        where id = #{id};
+    </delete>
+
+    <select id="findById" parameterType="String" resultType="member">
+        select *
+        from prefer_member
+        where memberId = #{memberId};
+    </select>
+    <select id="findAll" resultType="member">
+        select *
+        from prefer_member;
+    </select>
+
+    <update id="update" parameterType="member">
+        update prefer_member
+        set memberPassword=#{memberPassword},
+            memberName=#{memberName},
+            memberAge=#{memberAge},
+            memberPhone=#{memberPhone}
+        where memberId = #{memberId}
+    </update>
+
+
+    <select id="findByIdofmemberId" resultType="int">
+        select id
+        from prefer_member
+        where memberId = #{memberId};
+
+    </select>
+
+
+</mapper>
